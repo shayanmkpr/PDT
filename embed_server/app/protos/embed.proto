@@ -6,19 +6,17 @@ service Embedder {
   rpc GetEmbeddings (EmbedRequest) returns (EmbedResponse) {}
 }
 
-// explanation:
 message EmbedRequest {
-  repeated string texts = 1;
+  string text = 1;
+  string strategy = 2;
 }
 
-
-// explanation:
 message EmbedResponse {
-  repeated Embedding embeddings = 1;
+  repeated string chunks = 1;
+  repeated Embedding embeddings = 2;
+  repeated int32 indices = 3;
 }
 
-
-// explanation:
 message Embedding {
   repeated float values = 1;
 }

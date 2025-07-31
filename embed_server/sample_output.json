@@ -1,0 +1,37 @@
+{
+    "chunks": [
+        "Natural language processing allows computers to understand human language.",
+        "It is used in many applications like chatbots, translation, and sentiment analysis.",
+        "Recent advances in deep learning have significantly improved its accuracy.",
+        "However, challenges remain in understanding context and ambiguity."
+    ],
+    "embeddings": [
+        {
+            "values": [
+                
+                -0.04747704416513443
+            ]
+        },
+        {
+            "values": [
+                  -0.010018255561590195
+            ]
+        },
+        {
+            "values": [
+                -0.0055991653352975845,
+                            ]
+        },
+        {
+            "values": [
+                0.017524419352412224,
+                            ]
+        }
+    ],
+    "indices": [
+        0,
+        1,
+        2,
+        3
+    ]
+}

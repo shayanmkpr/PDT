@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x65mbed.proto\x12\x05\x65mbed\"\x1d\n\x0c\x45mbedRequest\x12\r\n\x05texts\x18\x01 \x03(\t\"5\n\rEmbedResponse\x12$\n\nembeddings\x18\x01 \x03(\x0b\x32\x10.embed.Embedding\"\x1b\n\tEmbedding\x12\x0e\n\x06values\x18\x01 \x03(\x02\x32H\n\x08\x45mbedder\x12<\n\rGetEmbeddings\x12\x13.embed.EmbedRequest\x1a\x14.embed.EmbedResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x65mbed.proto\x12\x05\x65mbed\".\n\x0c\x45mbedRequest\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x10\n\x08strategy\x18\x02 \x01(\t\"V\n\rEmbedResponse\x12\x0e\n\x06\x63hunks\x18\x01 \x03(\t\x12$\n\nembeddings\x18\x02 \x03(\x0b\x32\x10.embed.Embedding\x12\x0f\n\x07indices\x18\x03 \x03(\x05\"\x1b\n\tEmbedding\x12\x0e\n\x06values\x18\x01 \x03(\x02\x32H\n\x08\x45mbedder\x12<\n\rGetEmbeddings\x12\x13.embed.EmbedRequest\x1a\x14.embed.EmbedResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,11 +32,11 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'embed_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_EMBEDREQUEST']._serialized_start=22
-  _globals['_EMBEDREQUEST']._serialized_end=51
-  _globals['_EMBEDRESPONSE']._serialized_start=53
-  _globals['_EMBEDRESPONSE']._serialized_end=106
-  _globals['_EMBEDDING']._serialized_start=108
-  _globals['_EMBEDDING']._serialized_end=135
-  _globals['_EMBEDDER']._serialized_start=137
-  _globals['_EMBEDDER']._serialized_end=209
+  _globals['_EMBEDREQUEST']._serialized_end=68
+  _globals['_EMBEDRESPONSE']._serialized_start=70
+  _globals['_EMBEDRESPONSE']._serialized_end=156
+  _globals['_EMBEDDING']._serialized_start=158
+  _globals['_EMBEDDING']._serialized_end=185
+  _globals['_EMBEDDER']._serialized_start=187
+  _globals['_EMBEDDER']._serialized_end=259
 # @@protoc_insertion_point(module_scope)
