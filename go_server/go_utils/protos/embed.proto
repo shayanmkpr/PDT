@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package embed;
+
+service Embedder {
+  rpc GetEmbeddings (EmbedRequest) returns (EmbedResponse) {}
+}
+
+message EmbedRequest {
+  string text = 1;
+  string strategy = 2;
+}
+
+message EmbedResponse {
+  repeated string chunks = 1;
+  repeated Embedding embeddings = 2;
+  repeated int32 indices = 3;
+}
+
+// why thooguh?
+message Embedding {
+  repeated float values = 1;
+}
