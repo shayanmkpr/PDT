@@ -1,14 +1,15 @@
 import spacy
 from sentence_transformers import SentenceTransformer
 
-# everything here is happening under the hood.
-# even the different arrays are being embedded differently.
 class Embedder:
     def __init__(self, model="all-MiniLM-L6-v2"):
         self.model = SentenceTransformer(model)
-
+    
     def embed(self, texts):
-        return self.model.encode(texts, convert_to_numpy=True).tolist()
+        vectors = self.model.encode(texts,
+                 convert_to_numpy = True, normalize_embeddings = True,
+                 ).tolist()
+        return vectors
 
 class Chunker:
     def __init__(self):
@@ -64,10 +65,11 @@ if __name__ == "__main__":
     processor = TextProcessor()
     result = processor.process(text, strategy="semantic")
 
+    # print(results.hello())
+
     for i, results in enumerate(result):
         print(f'{i} " {results}')
 
     for chunk in result["chunks"]:
         print('-', chunk)
 
-    print("Embeddings shape:", len(result["embeddings"]), "x", len(result["embeddings"][0]))

@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option go_package = "github.com/shayanmkpr/PDT/go_server/go_utils/protos";
+
 package embed;
 
 service Embedder {
