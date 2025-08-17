@@ -120,3 +120,4 @@ var Embedder_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "embed.proto",
 }
+

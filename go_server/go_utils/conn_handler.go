@@ -7,10 +7,8 @@ import (
 	"os"
 	"strconv"
 	"time"
-
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-
 	pb "github.com/shayanmkpr/PDT/go_server/go_utils/protos"
 )
 
@@ -55,7 +53,6 @@ func NewGRPCClient(config GRPCClientConfig) (*GRPCClient, error) {
 	}, nil
 }
 
-// Close closes the gRPC connection
 func (gc *GRPCClient) Close() error {
 	return gc.conn.Close()
 }
@@ -69,7 +66,6 @@ func (gc *GRPCClient) GetEmbeddings(text string, strategy string) (*pb.EmbedResp
 	)
 	defer cancel() // Always call cancel to free resources
 
-	// Make the gRPC call
 	response, err := gc.client.GetEmbeddings(ctx, &pb.EmbedRequest{
 		Text:     text,
 		Strategy: strategy,
@@ -81,8 +77,6 @@ func (gc *GRPCClient) GetEmbeddings(text string, strategy string) (*pb.EmbedResp
 	return response, nil
 }
 
-// Gateway is your main function that can be called from main.go
-// input of type?
 func Gateway(input string) (*pb.EmbedResponse, error) {
 	// Get configuration from environment variables with defaults
 	config := GRPCClientConfig{
@@ -92,7 +86,6 @@ func Gateway(input string) (*pb.EmbedResponse, error) {
 		MaxWorkers:     getEnvAsInt("GRPC_MAX_WORKERS", 1),
 	}
 
-	// Create gRPC client
 	grpcClient, err := NewGRPCClient(config)
 	if err != nil {
 		log.Printf("Failed to create gRPC client: %v", err)
@@ -113,7 +106,6 @@ func Gateway(input string) (*pb.EmbedResponse, error) {
 	return response, nil
 }
 
-// Helper functions for environment variables
 func getEnv(key, defaultValue string) string {
 	if value := os.Getenv(key); value != "" {
 		return value
@@ -129,5 +121,3 @@ func getEnvAsInt(key string, defaultValue int) int {
 	}
 	return defaultValue
 }
-
-// Note: no main in this package; see go_server/main.go

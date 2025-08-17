@@ -307,3 +307,4 @@ func file_embed_proto_init() {
 	file_embed_proto_goTypes = nil
 	file_embed_proto_depIdxs = nil
 }
+
