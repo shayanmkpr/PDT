@@ -27,6 +27,7 @@ class EmbedderServicer(embed_pb2_grpc.EmbedderServicer):
                 embeddings=embeddings,
                 indices=indices
             )
+            print("Server working")
         except Exception as e:
             context.set_code(grpc.StatusCode.INTERNAL)
             context.set_details(f"Error processing request: {str(e)}")

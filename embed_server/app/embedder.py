@@ -49,6 +49,7 @@ class TextProcessor:
     def process(self, text, strategy="semantic"):
         chunks = self.chunker.chunk(text, strategy)
         embeddings = self.embedder.embed(chunks)
+        print("Embedder: Processing Request")
         return {
             "chunks": chunks,
             "embeddings": embeddings,

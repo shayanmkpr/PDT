@@ -3,7 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"os"
+	// "os"
 	"os/exec"
 	"regexp"
 	"strconv"
@@ -269,81 +269,81 @@ func GetLineNumberRanges(changes []LineChange) (addedRanges, removedRanges [][2]
 	return addedRanges, removedRanges
 }
 
-func main() {
-	filename := ""
-	if len(os.Args) > 1 {
-		filename = os.Args[1]
-	}
-	
-	// Get git diff
-	diffOutput, err := GetGitDiff(filename)
-	if err != nil {
-		fmt.Printf("Error getting diff: %v\n", err)
-		return
-	}
-	
-	if diffOutput == "" {
-		fmt.Println("No changes found")
-		return
-	}
-	
-	// Parse diff
-	fileChanges, err := ParseGitDiff(diffOutput)
-	if err != nil {
-		fmt.Printf("Error parsing diff: %v\n", err)
-		return
-	}
-	
-	// Process each file
-	for _, fileChange := range fileChanges {
-		if !strings.HasSuffix(fileChange.Filename, ".json"){
-			continue
-		}
-
-		fmt.Printf("\n=== File: %s ===\n", fileChange.Filename)
-		
-		// Get added lines
-		added := GetAddedLines(fileChange.LineChanges)
-		fmt.Printf("\nAdded lines (%d):\n", len(added))
-		for _, line := range added {
-			fmt.Printf("  +%d: %s\n", line.NewLineNum, line.Content)
-		}
-		
-		// Get removed lines
-		removed := GetRemovedLines(fileChange.LineChanges)
-		fmt.Printf("\nRemoved lines (%d):\n", len(removed))
-		for _, line := range removed {
-			fmt.Printf("  -%d: %s\n", line.OldLineNum, line.Content)
-		}
-		
-		// Get modified lines
-		modifications := GetModifiedLines(fileChange.LineChanges)
-		fmt.Printf("\nModified lines (%d pairs):\n", len(modifications))
-		for _, mod := range modifications {
-			fmt.Printf("  -%d: %s\n", mod[0].OldLineNum, mod[0].Content)
-			fmt.Printf("  +%d: %s\n", mod[1].NewLineNum, mod[1].Content)
-			fmt.Println()
-		}
-		
-		// Get line number ranges
-		addedRanges, removedRanges := GetLineNumberRanges(fileChange.LineChanges)
-		fmt.Printf("\nAdded line ranges: %v\n", addedRanges)
-		fmt.Printf("Removed line ranges: %v\n", removedRanges)
-		
-		// Example: Do something with the changed lines
-		fmt.Printf("\n=== Processing Changes ===\n")
-		for _, change := range fileChange.LineChanges {
-			switch change.Type {
-			case "added":
-				// Your logic for added lines
-				fmt.Printf("Process added line %d: %s\n", change.NewLineNum, change.Content)
-			case "removed":
-				// Your logic for removed lines
-				fmt.Printf("Process removed line %d: %s\n", change.OldLineNum, change.Content)
-			case "unchanged":
-				// Your logic for unchanged lines (if needed)
-				// fmt.Printf("Unchanged line %d->%d: %s\n", change.OldLineNum, change.NewLineNum, change.Content)
-			}
-		}
-	}
-}
+// func main() {
+// 	filename := ""
+// 	if len(os.Args) > 1 {
+// 		filename = os.Args[1]
+// 	}
+//
+// 	// Get git diff
+// 	diffOutput, err := GetGitDiff(filename)
+// 	if err != nil {
+// 		fmt.Printf("Error getting diff: %v\n", err)
+// 		return
+// 	}
+//
+// 	if diffOutput == "" {
+// 		fmt.Println("No changes found")
+// 		return
+// 	}
+//
+// 	// Parse diff
+// 	fileChanges, err := ParseGitDiff(diffOutput)
+// 	if err != nil {
+// 		fmt.Printf("Error parsing diff: %v\n", err)
+// 		return
+// 	}
+//
+// 	// Process each file
+// 	for _, fileChange := range fileChanges {
+// 		if !strings.HasSuffix(fileChange.Filename, ".json"){
+// 			continue
+// 		}
+//
+// 		fmt.Printf("\n=== File: %s ===\n", fileChange.Filename)
+//
+// 		// Get added lines
+// 		added := GetAddedLines(fileChange.LineChanges)
+// 		fmt.Printf("\nAdded lines (%d):\n", len(added))
+// 		for _, line := range added {
+// 			fmt.Printf("  +%d: %s\n", line.NewLineNum, line.Content)
+// 		}
+//
+// 		// Get removed lines
+// 		removed := GetRemovedLines(fileChange.LineChanges)
+// 		fmt.Printf("\nRemoved lines (%d):\n", len(removed))
+// 		for _, line := range removed {
+// 			fmt.Printf("  -%d: %s\n", line.OldLineNum, line.Content)
+// 		}
+//
+// 		// Get modified lines
+// 		modifications := GetModifiedLines(fileChange.LineChanges)
+// 		fmt.Printf("\nModified lines (%d pairs):\n", len(modifications))
+// 		for _, mod := range modifications {
+// 			fmt.Printf("  -%d: %s\n", mod[0].OldLineNum, mod[0].Content)
+// 			fmt.Printf("  +%d: %s\n", mod[1].NewLineNum, mod[1].Content)
+// 			fmt.Println()
+// 		}
+//
+// 		// Get line number ranges
+// 		addedRanges, removedRanges := GetLineNumberRanges(fileChange.LineChanges)
+// 		fmt.Printf("\nAdded line ranges: %v\n", addedRanges)
+// 		fmt.Printf("Removed line ranges: %v\n", removedRanges)
+//
+// 		// Example: Do something with the changed lines
+// 		fmt.Printf("\n=== Processing Changes ===\n")
+// 		for _, change := range fileChange.LineChanges {
+// 			switch change.Type {
+// 			case "added":
+// 				// Your logic for added lines
+// 				fmt.Printf("Process added line %d: %s\n", change.NewLineNum, change.Content)
+// 			case "removed":
+// 				// Your logic for removed lines
+// 				fmt.Printf("Process removed line %d: %s\n", change.OldLineNum, change.Content)
+// 			case "unchanged":
+// 				// Your logic for unchanged lines (if needed)
+// 				// fmt.Printf("Unchanged line %d->%d: %s\n", change.OldLineNum, change.NewLineNum, change.Content)
+// 			}
+// 		}
+// 	}
+// }

@@ -5,5 +5,5 @@ import(
 )
 
 func main() {
-	go_utils.Gateway()
+	go_utils.Gateway("this is the string and idk what about it")
 }
